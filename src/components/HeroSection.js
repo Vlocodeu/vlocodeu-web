@@ -1,7 +1,9 @@
+"use client";
+
 import { motion } from "framer-motion";
 import TypewriterText from "./TypewriterText";
 import Lottie from "lottie-react";
-import techAnimation from "../../public/assets/animations/tech.json";
+import techAnimation from "../assets/animations/tech.json";
 
 export default function HeroSection() {
   return (
@@ -38,7 +40,9 @@ export default function HeroSection() {
       </motion.div>
 
       <div className="w-full md:w-[400px] mt-12 md:mt-0 md:ml-12 z-10">
-        <Lottie animationData={techAnimation} loop={true} />
+        {typeof window !== "undefined" && (
+          <Lottie animationData={techAnimation} loop={true} />
+        )}
       </div>
     </section>
   );

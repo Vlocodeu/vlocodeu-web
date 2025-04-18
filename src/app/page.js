@@ -1,6 +1,6 @@
 "use client";
 
-// import HeroSection from "../components/HeroSection";
+import HeroSection from "../components/HeroSection";
 import AboutSection from "../components/AboutSection";
 import ServicesSection from "../components/ServicesSection";
 import ProductsSection from "../components/ProductsSection";
@@ -13,7 +13,7 @@ import { motion } from "framer-motion";
 export default function HomePage() {
   return (
     <main>
-      {/* <HeroSection /> */}
+      <HeroSection />
 
       <motion.div
         initial="hidden"
