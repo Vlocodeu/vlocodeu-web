@@ -37,6 +37,8 @@ const Navbar = () => {
 
   // Highlight current section
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -48,7 +50,7 @@ const Navbar = () => {
       {
         root: null,
         rootMargin: "0px",
-        threshold: 0.5, // 50% of section visible
+        threshold: 0.5,
       }
     );
 
