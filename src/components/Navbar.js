@@ -37,7 +37,8 @@ const Navbar = () => {
 
   // Highlight current section
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === "undefined" || typeof document === "undefined")
+      return;
 
     const observer = new IntersectionObserver(
       (entries) => {
