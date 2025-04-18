@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import TypewriterText from "./TypewriterText";
 import Lottie from "lottie-react";
-import techAnimation from "../assets/animations/tech.json";
+import techAnimation from "../../public/assets/animations/tech.json";
 
 export default function HeroSection() {
   return (
