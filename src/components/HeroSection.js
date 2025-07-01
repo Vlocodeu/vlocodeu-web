@@ -1,9 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import TypewriterText from "./TypewriterText";
-// import Lottie from "lottie-react";
-// import techAnimation from "../../public/assets/animations/tech.json";
+
+// ✅ Dynamically load Lottie only on client
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+import techAnimation from "../../public/assets/animations/tech.json"; // If you use it, make sure path is valid
 
 export default function HeroSection() {
   return (
@@ -39,11 +42,11 @@ export default function HeroSection() {
         </a>
       </motion.div>
 
-      {/* <div className="w-full md:w-[400px] mt-12 md:mt-0 md:ml-12 z-10">
-        {typeof window !== "undefined" && (
-          <Lottie animationData={techAnimation} loop={true} />
-        )}
-      </div> */}
+      {/* ✅ Safe Lottie usage */}
+
+      <div className="w-full md:w-[400px] mt-12 md:mt-0 md:ml-12 z-10">
+        <Lottie animationData={techAnimation} loop={true} />
+      </div>
     </section>
   );
 }
