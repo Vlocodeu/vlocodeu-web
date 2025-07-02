@@ -97,11 +97,11 @@ export default function AboutSection() {
           viewport={{ once: true }}
         >
           {/* Left Text */}
-          <div className="text-center md:text-left ">
+          <div className="text-center md:text-left">
             <h2 className="text-4xl font-bold text-purple-400 mb-6">
               Join the team
             </h2>
-            <p className="text-gray-200 text-lg mb-8 max-w-md">
+            <p className="text-gray-200 text-lg mb-8 max-w-md mx-auto md:mx-0">
               It all begins with an idea. Maybe you want to launch a business.
               Maybe you want to turn a hobby into something more. Or maybe you
               have a creative project to share with the world.
@@ -111,28 +111,51 @@ export default function AboutSection() {
             </button>
           </div>
 
-          {/* Right Enlarged Team Images */}
-          <div className="relative w-full h-[500px]">
-            {/* Top Right - Square */}
+          {/* Right Team Images */}
+          <div className="relative w-full h-[520px] hidden md:block">
+            {/* Desktop only */}
             <img
               src="/assets/man.jpg"
               alt="Team Member 1"
               className="w-48 h-48 object-cover rounded-xl absolute top-0 right-4 shadow-2xl"
             />
-
-            {/* Middle - Circle */}
             <img
               src="/assets/group.jpg"
               alt="Team Member 2"
               className="w-60 h-60 object-cover rounded-full absolute top-20 right-32 shadow-2xl z-10"
             />
-
-            {/* Bottom - Rectangle */}
             <img
               src="/assets/girl.jpg"
               alt="Team Member 3"
               className="w-60 h-80 object-cover rounded-xl absolute top-40 right-80 shadow-2xl z-20"
             />
+          </div>
+
+          {/* Mobile stacked version */}
+          <div className="md:hidden flex justify-center relative h-[380px]">
+            {/* Wrapper to position images */}
+            <div className="relative w-[280px] h-full">
+              {/* Top Left */}
+              <img
+                src="/assets/man.jpg"
+                alt="Team Member 1"
+                className="w-32 h-32 object-cover rounded-xl shadow-2xl absolute top-0 left-0 z-10"
+              />
+
+              {/* Center Overlap */}
+              <img
+                src="/assets/group.jpg"
+                alt="Team Member 2"
+                className="w-40 h-40 object-cover rounded-full shadow-2xl absolute top-16 left-16 z-20"
+              />
+
+              {/* Bottom Right */}
+              <img
+                src="/assets/girl.jpg"
+                alt="Team Member 3"
+                className="w-36 h-48 object-cover rounded-xl shadow-2xl absolute bottom-0 right-0 z-30"
+              />
+            </div>
           </div>
         </motion.div>
       </section>

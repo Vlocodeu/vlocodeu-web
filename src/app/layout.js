@@ -1,4 +1,5 @@
 import "./globals.css";
+import Script from "next/script";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -44,6 +45,21 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      {/* ✅ Google Analytics Script */}
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-R6KM4FXK9E"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-R6KM4FXK9E');
+          `}
+        </Script>
+      </head>
       <body className="bg-gray-950 text-white">
         <Navbar />
         {children}
