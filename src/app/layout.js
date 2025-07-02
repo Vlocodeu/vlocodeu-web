@@ -3,38 +3,38 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 export const metadata = {
-  // default title & template for all pages
-  title: {
-    default: "Vlocodeu - Digital IT Solutions",
-    template: "%s | Vlocodeu",
-  },
-  description: "Next‑gen tech development across AI, Web, SaaS, and more.",
-
-  // Open Graph
+  title: "Vlocodeu | Custom AI & Web Solutions",
+  description:
+    "Boost your digital presence with Vlocodeu's expert AI, SaaS, and Web App development services. Scalable, modern, and future-ready.",
+  keywords: [
+    "AI development",
+    "custom web apps",
+    "SaaS solutions",
+    "Next.js",
+    "digital transformation",
+    "Vlocodeu",
+  ],
   openGraph: {
     title: "Vlocodeu – Digital IT Solutions",
-    description: "Next‑gen tech development across AI, Web, SaaS, and more.",
-    url: "https://yourdomain.com",
-    siteName: "Vlocodeu",
+    description:
+      "Accelerate your business with our AI-driven web solutions and SaaS platforms.",
+    url: "https://vlocodeu.com",
+    type: "website",
     images: [
       {
-        url: "https://yourdomain.com/og-image.jpg",
+        url: "https://vlocodeu.com/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Vlocodeu Logo",
+        alt: "Vlocodeu Banner",
       },
     ],
-    locale: "en_US",
-    type: "website",
   },
-
-  // Twitter Card
   twitter: {
     card: "summary_large_image",
-    title: "Vlocodeu – Digital IT Solutions",
-    description: "Next‑gen tech development across AI, Web, SaaS, and more.",
-    creator: "@YourTwitterHandle",
-    images: ["https://yourdomain.com/og-image.jpg"],
+    title: "Vlocodeu – AI & Web App Experts",
+    description:
+      "Your partner in AI integrations, custom apps, and SaaS platforms.",
+    images: ["https://vlocodeu.com/og-image.jpg"],
   },
 
   // tell Next.js what your canonical base URL is

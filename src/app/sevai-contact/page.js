@@ -35,7 +35,7 @@ export default function SevaiContactPage() {
 
   return (
     <section className="min-h-screen bg-gray-950 text-white px-6 py-20">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl mx-auto mt-30">
         <h1 className="text-3xl font-bold mb-4 text-purple-400">
           Sevai Network – Delete Account Request
         </h1>
