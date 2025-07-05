@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import dynamic from "next/dynamic";
+import { useState, useEffect, useRef } from "react";
 
 const faqs = [
   {
@@ -21,8 +22,35 @@ const faqs = [
   },
 ];
 
+// Dynamically load the Script for Spline viewer only on the client-side
+const Script = dynamic(() => import("next/script"), { ssr: false });
+
 export default function AboutSection() {
   const [activeIndex, setActiveIndex] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const splineRef = useRef(null);
+
+  // Lazy load the Spline viewer when it enters the viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.5 } // Load when 50% of the viewer is in the viewport
+    );
+
+    if (splineRef.current) {
+      observer.observe(splineRef.current);
+    }
+
+    return () => {
+      if (splineRef.current) {
+        observer.unobserve(splineRef.current);
+      }
+    };
+  }, []);
 
   const toggleFAQ = (index) => {
     setActiveIndex(index === activeIndex ? null : index);
@@ -88,9 +116,35 @@ export default function AboutSection() {
       </section>
 
       {/* 🔥 Join the Team Section */}
-      <section className="py-24 px-6 bg-gray-950 text-white">
+      <section className="py-24 px-6 bg-gray-950 text-white relative">
+        {/* Spline viewer as background */}
+        <div
+          className="absolute top-0 left-0 w-full h-full z-0"
+          ref={splineRef}
+        >
+          {/* Dynamically load the Spline viewer script when it's in view */}
+          {isVisible && (
+            <>
+              <Script
+                type="module"
+                src="https://unpkg.com/@splinetool/viewer@1.10.21/build/spline-viewer.js"
+                strategy="afterInteractive" // Ensures the script loads after page interaction
+              />
+              <spline-viewer
+                url="https://prod.spline.design/dALQdWko0scuxxQo/scene.splinecode"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  transform: "translate3d(0, 0, 0)", // Hardware acceleration
+                  willChange: "transform, opacity", // Optimizes the rendering
+                }}
+              />
+            </>
+          )}
+        </div>
+
         <motion.div
-          className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+          className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}

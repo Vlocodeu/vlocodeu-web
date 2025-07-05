@@ -27,3 +27,6 @@ body {
 html {
   scroll-behavior: smooth;
 }
+.spline-viewer {
+  will-change: transform;
+}
