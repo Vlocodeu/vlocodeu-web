@@ -73,8 +73,12 @@ const Navbar = () => {
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="text-2xl font-bold text-white">
-          Vlocodeu
+        <Link href="/" className="flex items-center">
+          <img
+            src="/assets/favicon.png" // Path to your logo image in the 'public' folder
+            alt="Vlocodeu Logo"
+            className="h-8" // Adjust the height as per your design
+          />
         </Link>
 
         {/* Desktop Menu */}

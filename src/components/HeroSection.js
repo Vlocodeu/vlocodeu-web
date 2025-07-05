@@ -40,7 +40,14 @@ export default function HeroSection() {
       className="relative min-h-screen flex items-center bg-gray-950 text-white px-4 md:px-8"
     >
       {/* Full-screen Spline Viewer as Background */}
-      <div className="absolute top-0 left-0 w-full h-full z-0" ref={splineRef}>
+      <div
+        className="absolute top-0 left-0 w-full h-full z-0"
+        ref={splineRef}
+        style={{
+          transform: "translate3d(0, 0, 0)",
+          willChange: "transform, opacity",
+        }}
+      >
         {/* Dynamically load the Spline viewer script when it's in view */}
         {isVisible && (
           <>
@@ -54,8 +61,6 @@ export default function HeroSection() {
               style={{
                 width: "100%",
                 height: "100%",
-                transform: "translate3d(0, 0, 0)", // Hardware acceleration
-                willChange: "transform, opacity", // Optimizes the rendering
                 zIndex: -1, // Ensures content appears above the background
               }}
             />

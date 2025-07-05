@@ -7,6 +7,9 @@ export const metadata = {
   title: "Vlocodeu | Custom AI & Web Solutions",
   description:
     "Boost your digital presence with Vlocodeu's expert AI, SaaS, and Web App development services. Scalable, modern, and future-ready.",
+  icons: {
+    icon: "/assets/favicon.png", // Path to your PNG favicon
+  },
   keywords: [
     "AI development",
     "custom web apps",
@@ -47,6 +50,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       {/* ✅ Google Analytics Script */}
       <head>
+        <link rel="icon" href="/assets/favicon.png" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-R6KM4FXK9E"
           strategy="afterInteractive"
