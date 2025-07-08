@@ -34,6 +34,20 @@ export default function HeroSection() {
     };
   }, []);
 
+  // Function to load Spline script only if not already loaded
+  const loadSplineScript = () => {
+    if (!window.customElements.get("spline-viewer")) {
+      const script = document.createElement("script");
+      script.type = "module";
+      script.src =
+        "https://unpkg.com/@splinetool/viewer@1.10.22/build/spline-viewer.js";
+      script.onload = () => {
+        console.log("Spline viewer script loaded successfully.");
+      };
+      document.body.appendChild(script);
+    }
+  };
+
   return (
     <section
       id="hero"
@@ -51,11 +65,8 @@ export default function HeroSection() {
         {/* Dynamically load the Spline viewer script when it's in view */}
         {isVisible && (
           <>
-            <Script
-              type="module"
-              src="https://unpkg.com/@splinetool/viewer@1.10.21/build/spline-viewer.js"
-              strategy="afterInteractive" // Ensures the script loads after page interaction
-            />
+            {/* Call the function to load the script if not already loaded */}
+            {loadSplineScript()}
             <spline-viewer
               url="https://prod.spline.design/gO4dKjqIGCA2qZ9U/scene.splinecode"
               style={{
