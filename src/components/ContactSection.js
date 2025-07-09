@@ -2,12 +2,22 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function ContactSection() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const { t } = useLanguage();
+
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
   const handleChange = (e) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setForm((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -23,14 +33,14 @@ export default function ContactSection() {
       });
 
       if (res.ok) {
-        alert("✅ Message sent successfully!");
+        alert(t.successMessage);
         setForm({ name: "", email: "", message: "" });
       } else {
-        alert("❌ Failed to send. Please try again.");
+        alert(t.errorMessage);
       }
     } catch (err) {
       console.error("Error submitting contact form:", err);
-      alert("❌ An error occurred. Please try again later.");
+      alert(t.errorMessage);
     }
   };
 
@@ -44,12 +54,9 @@ export default function ContactSection() {
         viewport={{ once: true }}
       >
         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-purple-400">
-          Get In Touch
+          {t.contactTitle}
         </h2>
-        <p className="text-gray-400 mb-12">
-          Let’s collaborate or talk tech. Drop us a message — or ping us on
-          WhatsApp!
-        </p>
+        <p className="text-gray-400 mb-12">{t.contactDescription}</p>
 
         {/* Contact Form */}
         <form
@@ -59,7 +66,7 @@ export default function ContactSection() {
           <input
             type="text"
             name="name"
-            placeholder="Your Name"
+            placeholder={t.formName}
             value={form.name}
             onChange={handleChange}
             required
@@ -68,7 +75,7 @@ export default function ContactSection() {
           <input
             type="email"
             name="email"
-            placeholder="Your Email"
+            placeholder={t.formEmail}
             value={form.email}
             onChange={handleChange}
             required
@@ -76,7 +83,7 @@ export default function ContactSection() {
           />
           <textarea
             name="message"
-            placeholder="Your Message"
+            placeholder={t.formMessage}
             rows="4"
             value={form.message}
             onChange={handleChange}
@@ -87,7 +94,7 @@ export default function ContactSection() {
             type="submit"
             className="md:col-span-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-3 rounded transition"
           >
-            Send Message
+            {t.sendMessageBtn}
           </button>
         </form>
 
@@ -97,15 +104,15 @@ export default function ContactSection() {
             href="mailto:vlocodeu@gmail.com"
             className="text-purple-400 hover:text-white underline"
           >
-            📧 vlocodeu@gmail.com
+            {t.emailLabel}
           </a>
           <a
             href="https://wa.me/919597754524"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded text-sm font-medium shadow"
           >
-            💬 WhatsApp Us
+            {t.whatsappLabel}
           </a>
         </div>
       </motion.div>

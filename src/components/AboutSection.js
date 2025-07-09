@@ -2,27 +2,26 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-
-const faqs = [
-  {
-    question: "What services does Vlocodeu offer?",
-    answer:
-      "We offer full-stack development, AI solutions, SaaS platforms, mobile apps, and cloud transformation.",
-  },
-  {
-    question: "Which industries do you serve?",
-    answer:
-      "We work across various industries including manufacturing, education, finance, and technology startups.",
-  },
-  {
-    question: "Can Vlocodeu handle enterprise-grade systems?",
-    answer:
-      "Yes. We build scalable, secure, and performance-optimized systems for enterprise-level clients.",
-  },
-];
+import { useLanguage } from "../context/LanguageContext";
 
 export default function AboutSection() {
   const [activeIndex, setActiveIndex] = useState(null);
+  const { t } = useLanguage();
+
+  const faqs = [
+    {
+      question: t.faq1Question,
+      answer: t.faq1Answer,
+    },
+    {
+      question: t.faq2Question,
+      answer: t.faq2Answer,
+    },
+    {
+      question: t.faq3Question,
+      answer: t.faq3Answer,
+    },
+  ];
 
   const toggleFAQ = (index) => {
     setActiveIndex(index === activeIndex ? null : index);
@@ -44,15 +43,10 @@ export default function AboutSection() {
           {/* Left: Text & FAQs */}
           <div>
             <h2 className="text-4xl font-bold text-purple-400 mb-6">
-              About Vlocodeu
+              {t.aboutTitle}
             </h2>
             <p className="text-lg text-gray-300 mb-10 leading-relaxed">
-              Vlocodeu is a multi-domain IT company dedicated to building
-              innovative, scalable, and intelligent solutions. From custom web
-              apps and mobile development to cutting-edge AI integrations and
-              cloud architecture, our mission is to drive digital transformation
-              for businesses of all sizes. We're passionate about technology,
-              obsessed with quality, and committed to creating impact.
+              {t.aboutParagraph}
             </p>
 
             {/* FAQ Accordion */}
@@ -99,15 +93,13 @@ export default function AboutSection() {
           {/* Left Text */}
           <div className="text-center md:text-left">
             <h2 className="text-4xl font-bold text-purple-400 mb-6">
-              Join the team
+              {t.joinTitle}
             </h2>
             <p className="text-gray-200 text-lg mb-8 max-w-md mx-auto md:mx-0">
-              It all begins with an idea. Maybe you want to launch a business.
-              Maybe you want to turn a hobby into something more. Or maybe you
-              have a creative project to share with the world.
+              {t.joinParagraph}
             </p>
             <button className="bg-white text-gray-900 px-8 py-3 rounded-full font-medium hover:bg-purple-600 hover:text-white transition">
-              Join Us
+              {t.joinButton}
             </button>
           </div>
 
@@ -133,23 +125,17 @@ export default function AboutSection() {
 
           {/* Mobile stacked version */}
           <div className="md:hidden flex justify-center relative h-[380px]">
-            {/* Wrapper to position images */}
             <div className="relative w-[280px] h-full">
-              {/* Top Left */}
               <img
                 src="/assets/man.jpg"
                 alt="Team Member 1"
                 className="w-32 h-32 object-cover rounded-xl shadow-2xl absolute top-0 left-0 z-10"
               />
-
-              {/* Center Overlap */}
               <img
                 src="/assets/group.jpg"
                 alt="Team Member 2"
                 className="w-40 h-40 object-cover rounded-full shadow-2xl absolute top-16 left-16 z-20"
               />
-
-              {/* Bottom Right */}
               <img
                 src="/assets/girl.jpg"
                 alt="Team Member 3"

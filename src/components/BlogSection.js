@@ -1,32 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-const blogPosts = [
-  {
-    title: "Why AI is Revolutionizing Enterprise Software",
-    date: "April 12, 2025",
-    summary:
-      "Discover how artificial intelligence is reshaping core business applications, from automation to insights.",
-    link: "https://www.outsystems.com/blog/posts/ai-enterprise-software/",
-  },
-  {
-    title: "Top 5 Mistakes in SaaS Development (and How to Avoid Them)",
-    date: "March 28, 2025",
-    summary:
-      "We break down the most common pitfalls teams face when building SaaS — and practical ways to solve them.",
-    link: "https://devroom.uk/article/the-top-5-mistakes-in-saas-development-(and-how-to-avoid-them)",
-  },
-  {
-    title: "Going Serverless: Benefits, Costs & When to Choose It",
-    date: "March 14, 2025",
-    summary:
-      "A quick guide to serverless architecture and how it compares to traditional backend deployments.",
-    link: "https://www.cloudflare.com/learning/serverless/why-use-serverless/",
-  },
-];
+import { useLanguage } from "../context/LanguageContext";
 
 export default function BlogSection() {
+  const { t } = useLanguage();
+
+  const blogPosts = t.blogPosts || [];
+
   return (
     <section id="blog" className="py-24 px-6 bg-gray-950 text-white">
       <motion.div
@@ -37,7 +18,7 @@ export default function BlogSection() {
         viewport={{ once: true }}
       >
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-purple-400">
-          From Our Blogs
+          {t.blogTitle}
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
@@ -56,9 +37,11 @@ export default function BlogSection() {
               </div>
               <a
                 href={post.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-6 inline-block text-purple-400 hover:text-white text-sm font-medium"
               >
-                Read More →
+                {t.readMoreBtn}
               </a>
             </motion.div>
           ))}

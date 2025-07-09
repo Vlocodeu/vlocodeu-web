@@ -1,47 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-const projects = [
-  {
-    name: "Sevai Network Mobile App",
-    tagline:
-      "Cross-platform FlutterFlow mobile app with Supabase and PostgreSQL backend.",
-    link: "https://your-link-to-app.com", // replace with real link
-  },
-  {
-    name: "EvolveInfi Website",
-    tagline:
-      "Corporate website for EvolveInfi (Spain) built using Next.js frontend & backend.",
-    link: "https://evlo.vercel.app/", // replace with actual link
-  },
-  {
-    name: "Actreg Company Website",
-    tagline:
-      "Responsive company site for Actreg (Spain) with full-stack Next.js development.",
-    link: "https://actreg.vercel.app/", // replace with actual link
-  },
-  {
-    name: "DMS with SharePoint",
-    tagline:
-      "Document Management System on Microsoft SharePoint used by 300+ users across 10+ companies.",
-    link: "https://your-sharepoint-link.com", // replace with actual link
-  },
-  {
-    name: "Smart Inventory AI",
-    tagline:
-      "AI-integrated stock tracking tool for warehouse management with forecasting dashboard.",
-    link: "#",
-  },
-  {
-    name: "CyberSecure Panel",
-    tagline:
-      "Security configuration tool for zero-trust architecture using Fortinet and Azure.",
-    link: "#",
-  },
-];
+import { useLanguage } from "../context/LanguageContext";
 
 export default function ProjectsSection() {
+  const { t } = useLanguage();
+
+  const projects = t.projectsList || [];
+
   return (
     <section id="projects" className="py-24 px-6 bg-gray-950 text-white">
       <motion.div
@@ -52,7 +18,7 @@ export default function ProjectsSection() {
         viewport={{ once: true }}
       >
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-purple-400">
-          Our Projects
+          {t.projectsTitle}
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -74,7 +40,7 @@ export default function ProjectsSection() {
                 rel="noopener noreferrer"
                 className="mt-auto inline-block px-4 py-2 text-sm font-medium text-purple-400 border border-purple-600 rounded hover:bg-purple-600 hover:text-white transition"
               >
-                View Details
+                {t.viewDetailsBtn}
               </a>
             </motion.div>
           ))}

@@ -1,13 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useLanguage } from "../context/LanguageContext";
 
-const TypewriterText = ({ texts, typingSpeed = 70, pauseTime = 2000 }) => {
+const TypewriterText = ({ typingSpeed = 70, pauseTime = 2000 }) => {
+  const { t } = useLanguage();
+
+  const texts = t.heroTypewriterTexts || [];
+
   const [textIndex, setTextIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
+    if (texts.length === 0) return;
+
     const currentText = texts[textIndex];
     const currentLength = displayedText.length;
     const isDoneTyping = currentLength === currentText.length;

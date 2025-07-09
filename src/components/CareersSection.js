@@ -2,26 +2,11 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-
-const openings = [
-  {
-    role: "Frontend Developer",
-    dept: "Web & UI",
-    type: "Full Time · Remote",
-  },
-  {
-    role: "AI Product Manager",
-    dept: "AI & Innovation",
-    type: "Full Time · Hybrid",
-  },
-  {
-    role: "DevOps Engineer",
-    dept: "Infrastructure",
-    type: "Full Time · Onsite",
-  },
-];
+import { useLanguage } from "../context/LanguageContext";
 
 export default function CareersSection() {
+  const { t } = useLanguage();
+
   const [showModal, setShowModal] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
@@ -83,6 +68,8 @@ export default function CareersSection() {
     reader.readAsDataURL(form.resume);
   };
 
+  const openings = t.jobsList || [];
+
   return (
     <section id="careers" className="py-24 px-6 bg-gray-950 text-white">
       <motion.div
@@ -93,12 +80,10 @@ export default function CareersSection() {
         viewport={{ once: true }}
       >
         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-purple-400">
-          Join Our Team
+          {t.careersTitle}
         </h2>
         <p className="text-gray-400 max-w-2xl mx-auto mb-12">
-          We’re always looking for passionate developers, creatives, and
-          visionaries who are ready to shape the future of digital products.
-          Explore open roles and grow with us at Vlocodeu.
+          {t.careersDescription}
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
@@ -119,7 +104,7 @@ export default function CareersSection() {
                 onClick={() => setShowModal(true)}
                 className="mt-6 inline-block px-4 py-2 text-sm font-medium text-purple-400 border border-purple-600 rounded hover:bg-purple-600 hover:text-white transition"
               >
-                Apply Now
+                {t.applyNowBtn}
               </button>
             </motion.div>
           ))}
@@ -138,19 +123,19 @@ export default function CareersSection() {
             </button>
             {submitted ? (
               <div className="text-center text-green-400 text-lg font-medium py-12">
-                ✅ Your application has been submitted!
+                {t.successMessage}
               </div>
             ) : (
               <>
                 <h3 className="text-xl font-bold mb-4 text-purple-400">
-                  Apply for the Role
+                  {t.applyRoleTitle}
                 </h3>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <input
                       type="text"
                       name="firstName"
-                      placeholder="First Name"
+                      placeholder={t.formFirstName}
                       value={form.firstName}
                       onChange={handleChange}
                       className="p-2 rounded bg-gray-800 text-white w-full"
@@ -159,7 +144,7 @@ export default function CareersSection() {
                     <input
                       type="text"
                       name="lastName"
-                      placeholder="Last Name"
+                      placeholder={t.formLastName}
                       value={form.lastName}
                       onChange={handleChange}
                       className="p-2 rounded bg-gray-800 text-white w-full"
@@ -169,7 +154,7 @@ export default function CareersSection() {
                   <input
                     type="email"
                     name="email"
-                    placeholder="Email"
+                    placeholder={t.formEmail}
                     value={form.email}
                     onChange={handleChange}
                     className="p-2 rounded bg-gray-800 text-white w-full"
@@ -178,7 +163,7 @@ export default function CareersSection() {
                   <input
                     type="tel"
                     name="phone"
-                    placeholder="Phone Number"
+                    placeholder={t.formPhone}
                     value={form.phone}
                     onChange={handleChange}
                     className="p-2 rounded bg-gray-800 text-white w-full"
@@ -187,7 +172,7 @@ export default function CareersSection() {
                   <input
                     type="number"
                     name="experience"
-                    placeholder="Years of Experience"
+                    placeholder={t.formExperience}
                     value={form.experience}
                     onChange={handleChange}
                     className="p-2 rounded bg-gray-800 text-white w-full"
@@ -195,7 +180,7 @@ export default function CareersSection() {
                   />
                   <textarea
                     name="description"
-                    placeholder="Tell us about yourself..."
+                    placeholder={t.formDescription}
                     value={form.description}
                     onChange={handleChange}
                     className="p-2 rounded bg-gray-800 text-white w-full"
@@ -213,7 +198,7 @@ export default function CareersSection() {
                     type="submit"
                     className="bg-purple-600 px-6 py-2 rounded text-white hover:bg-purple-700 transition"
                   >
-                    Submit Application
+                    {t.submitApplicationBtn}
                   </button>
                 </form>
               </>

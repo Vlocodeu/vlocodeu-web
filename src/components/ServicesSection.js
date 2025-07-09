@@ -1,45 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-const services = [
-  {
-    title: "Web App Development",
-    icon: "💻",
-    description:
-      "Custom web applications tailored to your business logic and workflow.",
-  },
-  {
-    title: "Mobile App Development",
-    icon: "📱",
-    description: "iOS and Android apps with beautiful UI and fast performance.",
-  },
-  {
-    title: "AI & ML Solutions",
-    icon: "🤖",
-    description:
-      "Smart systems powered by machine learning and natural language processing.",
-  },
-  {
-    title: "Digital Transformation",
-    icon: "🚀",
-    description:
-      "Modernizing legacy systems and digitizing your full business ecosystem.",
-  },
-  {
-    title: "Cloud Architecture",
-    icon: "☁️",
-    description: "Secure, scalable cloud solutions using AWS, Azure, or GCP.",
-  },
-  {
-    title: "SaaS Platform Development",
-    icon: "🧩",
-    description:
-      "From MVP to enterprise SaaS, we build fully hosted platforms.",
-  },
-];
+import { useLanguage } from "../context/LanguageContext";
 
 export default function ServicesSection() {
+  const { t } = useLanguage();
+
+  const services = t.servicesList || [];
+
   return (
     <section id="services" className="py-24 px-6 bg-gray-950 text-white">
       <motion.div
@@ -50,7 +18,7 @@ export default function ServicesSection() {
         viewport={{ once: true }}
       >
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-purple-400">
-          Our Services
+          {t.servicesTitle}
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

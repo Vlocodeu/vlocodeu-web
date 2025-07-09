@@ -2,6 +2,7 @@ import "./globals.css";
 import Script from "next/script";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { LanguageProvider } from "../context/LanguageContext";
 
 export const metadata = {
   title: "Vlocodeu | Custom AI & Web Solutions",
@@ -65,9 +66,11 @@ export default function RootLayout({ children }) {
         </Script>
       </head>
       <body className="bg-gray-950 text-white">
-        <Navbar />
-        {children}
-        <Footer />
+        <LanguageProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );
