@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
+// import { AnimatedGridPattern } from "@/components/magicui/animated-grid-pattern";
 
 export default function ProjectsSection() {
   const { t } = useLanguage();
@@ -9,9 +10,17 @@ export default function ProjectsSection() {
   const projects = t.projectsList || [];
 
   return (
-    <section id="projects" className="py-24 px-6 bg-gray-950 text-white">
+    <section
+      id="projects"
+      className="relative py-24 px-6 bg-gray-950 text-white overflow-hidden"
+    >
+      {/* Flickering Grid Background */}
+      {/* <AnimatedGridPattern
+  className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"
+/> */}
+
       <motion.div
-        className="max-w-6xl mx-auto text-center"
+        className="max-w-6xl mx-auto text-center relative z-10"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}

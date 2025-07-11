@@ -5,18 +5,16 @@ import dynamic from "next/dynamic";
 import { useEffect, useState, useRef } from "react";
 import TypewriterText from "./TypewriterText";
 import { useLanguage } from "../context/LanguageContext";
+import { FlickeringGrid } from "../components/magicui/flickering-grid";
 
-// Dynamically load the Script for Spline viewer only on the client-side
 const Script = dynamic(() => import("next/script"), { ssr: false });
 
 export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
   const splineRef = useRef(null);
 
-  // Language hook
   const { t } = useLanguage();
 
-  // Lazy load the Spline viewer when it enters the viewport
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -38,7 +36,6 @@ export default function HeroSection() {
     };
   }, []);
 
-  // Function to load Spline script only if not already loaded
   const loadSplineScript = () => {
     if (!window.customElements.get("spline-viewer")) {
       const script = document.createElement("script");
@@ -55,16 +52,19 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center bg-gray-950 text-white px-4 md:px-8"
+      className="relative min-h-screen flex items-center bg-gray-950 text-white px-4 md:px-8 overflow-hidden"
     >
-      {/* Full-screen Spline Viewer as Background */}
-      <div
+      {/* Flickering Grid Background */}
+      <FlickeringGrid
+        color="rgb(168, 85, 247)"
+        maxOpacity={0.15}
         className="absolute top-0 left-0 w-full h-full z-0"
+      />
+
+      {/* Spline Background */}
+      <div
+        className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"
         ref={splineRef}
-        style={{
-          transform: "translate3d(0, 0, 0)",
-          willChange: "transform, opacity",
-        }}
       >
         {isVisible && (
           <>
@@ -81,9 +81,8 @@ export default function HeroSection() {
         )}
       </div>
 
-      {/* Content above the Spline background */}
+      {/* Content */}
       <div className="max-w-screen-xl mx-auto w-full flex flex-col-reverse lg:flex-row items-center justify-between gap-12 py-20 relative z-10">
-        {/* Left Text Content */}
         <motion.div
           className="w-full lg:w-1/2 text-center lg:text-left"
           initial={{ opacity: 0, y: 30 }}
@@ -106,9 +105,8 @@ export default function HeroSection() {
           </a>
         </motion.div>
 
-        {/* Right content (optional) */}
         <div className="w-full lg:w-1/2 flex justify-center">
-          {/* Additional content goes here if needed */}
+          {/* Optional content */}
         </div>
       </div>
     </section>
